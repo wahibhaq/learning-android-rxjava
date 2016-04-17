@@ -5,5 +5,4 @@ package com.learning.rxjava.models;
  */
 public class GistFile {
     public String size;
-    public String content;
 }
