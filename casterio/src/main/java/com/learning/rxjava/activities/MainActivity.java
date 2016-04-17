@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     return Observable.just(getGist()); //gets called only after subscriber
                 } catch (IOException e) {
-                    return null;
+                    return Observable.error(e); //for better error handling in onError()
                 }
             }
         });
