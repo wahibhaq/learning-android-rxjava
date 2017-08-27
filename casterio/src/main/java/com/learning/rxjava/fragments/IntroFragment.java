@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
+import com.learning.rxjava.introtorxtutorials.Part2;
+import com.learning.rxjava.katas.introduction.Kata1CreateObservable;
+import com.learning.rxjava.katas.introduction.Kata2FetchArticleObservable;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -39,6 +42,8 @@ public class IntroFragment extends Fragment {
     private static final String TAG = IntroFragment.class.getSimpleName();
 
     private Disposable subscription;
+
+    private Part2 part2;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -94,6 +99,14 @@ public class IntroFragment extends Fragment {
                         }
                     }
                 });
+
+        //testing katas
+//        Kata2FetchArticleObservable kata2 = new Kata2FetchArticleObservable();
+//        kata2.createAnObservable();
+
+        //testing IntroToRx Tutorial exercises
+        part2 = new Part2();
+        part2.createReplaySubject();
     }
 
     @Nullable
@@ -128,6 +141,7 @@ public class IntroFragment extends Fragment {
         if(subscription != null && !subscription.isDisposed()) {
             subscription.dispose(); //In order to avoid memory leak
         }
+        part2.clear();
     }
 
 

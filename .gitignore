@@ -35,3 +35,4 @@ proguard/
 captures/
 libs/
 src/main/res/drawable/
+misc.xml
