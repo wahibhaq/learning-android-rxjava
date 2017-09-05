@@ -106,7 +106,7 @@ public class IntroFragment extends Fragment {
 
         //testing IntroToRx Tutorial exercises
         part2 = new Part2();
-        part2.createBufferObservable();
+        part2.convertingFutureTaskToObs();
     }
 
     @Nullable

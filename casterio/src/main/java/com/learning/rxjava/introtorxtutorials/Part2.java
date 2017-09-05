@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -15,6 +16,9 @@ import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
 import io.reactivex.subjects.Subject;
 
+/**
+ * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
+ */
 public class Part2 {
 
     private static final String TAG = Part2.class.getSimpleName();
@@ -175,4 +179,20 @@ public class Part2 {
             disposable.dispose();
         }
     }
+
+    /**
+     * The observable emits the result of the FutureTask when it is available and then terminates.
+     */
+    public void convertingFutureTaskToObs() {
+        FutureTask<String> futureTask = new FutureTask<>(() -> {
+            Thread.sleep(3000);
+            return "hello";
+        });
+        new Thread(futureTask).start();
+
+        Observable<String> observable = Observable.fromFuture(futureTask);
+        disposable = observable.subscribeWith(disposableObserver());
+    }
+
+
 }
