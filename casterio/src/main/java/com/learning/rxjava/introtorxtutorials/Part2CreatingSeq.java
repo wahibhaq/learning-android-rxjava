@@ -19,13 +19,13 @@ import io.reactivex.subjects.Subject;
 /**
  * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
  */
-public class Part2 {
+class Part2CreatingSeq implements Tutorial {
 
-    private static final String TAG = Part2.class.getSimpleName();
+    private static final String TAG = Part2CreatingSeq.class.getSimpleName();
 
     private Disposable disposable;
 
-    public Part2() {
+    public Part2CreatingSeq() {
     }
 
     /**
@@ -174,6 +174,7 @@ public class Part2 {
         });
     }
 
+    @Override
     public void clear() {
         if(!disposable.isDisposed()) {
             disposable.dispose();

@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.Part2;
-import com.learning.rxjava.katas.introduction.Kata1CreateObservable;
-import com.learning.rxjava.katas.introduction.Kata2FetchArticleObservable;
+import com.learning.rxjava.introtorxtutorials.Part2Reducing;
+import com.learning.rxjava.introtorxtutorials.ReducingSeqTutorial;
+import com.learning.rxjava.introtorxtutorials.Tutorial;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -43,7 +43,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    private Part2 part2;
+    ReducingSeqTutorial introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -105,8 +105,13 @@ public class IntroFragment extends Fragment {
 //        kata2.createAnObservable();
 
         //testing IntroToRx Tutorial exercises
-        part2 = new Part2();
-        part2.convertingFutureTaskToObs();
+//        Part2CreatingSeq part2 = new Part2CreatingSeq();
+//        part2.convertingFutureTaskToObs();
+
+        //Testing Filter Reduce exercises
+        introtorx = new Part2Reducing();
+        introtorx.filter();
+
     }
 
     @Nullable
@@ -141,7 +146,7 @@ public class IntroFragment extends Fragment {
         if(subscription != null && !subscription.isDisposed()) {
             subscription.dispose(); //In order to avoid memory leak
         }
-        part2.clear();
+        introtorx.clear();
     }
 
 
