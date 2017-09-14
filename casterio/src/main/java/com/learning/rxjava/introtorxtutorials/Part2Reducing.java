@@ -41,7 +41,7 @@ public class Part2Reducing implements ReducingSeqTutorial {
 
     @Override
     public void filter() {
-        Observable<Integer> observable = Observable.interval(1,100);
+        Observable<Integer> observable = Observable.range(1,100);
         disposable = observable.filter(integer -> integer % 10 == 0)
                 .subscribeWith(disposableObserver());
     }
