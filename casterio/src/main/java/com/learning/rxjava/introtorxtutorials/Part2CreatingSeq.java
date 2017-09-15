@@ -19,9 +19,7 @@ import io.reactivex.subjects.Subject;
 /**
  * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
  */
-class Part2CreatingSeq implements Tutorial {
-
-    private static final String TAG = Part2CreatingSeq.class.getSimpleName();
+class Part2CreatingSeq extends BaseRxObs implements Tutorial {
 
     private Disposable disposable;
 
@@ -33,37 +31,17 @@ class Part2CreatingSeq implements Tutorial {
      */
     public void createEmptyObservable() {
         Observable<String> values = Observable.empty();
-        disposable = values.subscribeWith(disposableObserver());
-    }
-
-    @android.support.annotation.NonNull
-    private DisposableObserver<String> disposableObserver() {
-        return new DisposableObserver<String>() {
-            @Override
-            public void onNext(@NonNull String s) {
-                Log.i(TAG, "onNext: " + s);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.i(TAG, "onError: " + e);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.i(TAG, "onComplete");
-            }
-        };
+        disposable = values.subscribeWith(stringDisposableObserver());
     }
 
     public void createNeverObservable() {
         Observable<String> values = Observable.never();
-        disposable = values.subscribeWith(disposableObserver());
+        disposable = values.subscribeWith(stringDisposableObserver());
     }
 
     public void createErrorObservable() {
         Observable<String> values = Observable.error(new Exception("Oops"));
-        disposable = values.subscribeWith(disposableObserver());
+        disposable = values.subscribeWith(stringDisposableObserver());
     }
 
     public void createDeferObservable() {
@@ -83,7 +61,7 @@ class Part2CreatingSeq implements Tutorial {
             e.onNext("Hello");
             e.onComplete();
         });
-        disposable = values.subscribeWith(disposableObserver());
+        disposable = values.subscribeWith(stringDisposableObserver());
     }
 
     /**
@@ -137,7 +115,7 @@ class Part2CreatingSeq implements Tutorial {
         blank.add("a");
         blank.add("b");
         Observable<String> values = Observable.fromIterable(blank);
-        disposable = values.subscribeWith(disposableObserver());
+        disposable = values.subscribeWith(stringDisposableObserver());
     }
 
     /**
@@ -192,7 +170,7 @@ class Part2CreatingSeq implements Tutorial {
         new Thread(futureTask).start();
 
         Observable<String> observable = Observable.fromFuture(futureTask);
-        disposable = observable.subscribeWith(disposableObserver());
+        disposable = observable.subscribeWith(stringDisposableObserver());
     }
 
 

@@ -1,87 +1,21 @@
 package com.learning.rxjava.introtorxtutorials;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 
 /**
 https://github.com/Froussios/Intro-To-RxJava/blob/master/Part%202%20-%20Sequence%20Basics/2.%20Reducing%20a%20sequence.md
  */
-public class Part2Reducing implements ReducingSeqTutorial {
-
-    private static final String TAG = Part2Reducing.class.getSimpleName();
+public class Part2Reducing extends BaseRxObs implements ReducingSeqTutorial {
 
     private Disposable disposable;
 
     public Part2Reducing() {
-    }
-
-    @android.support.annotation.NonNull
-    private DisposableObserver<Integer> intDisposableObserver() {
-        return new DisposableObserver<Integer>() {
-            @Override
-            public void onNext(@NonNull Integer s) {
-                Log.i(TAG, "onNext: " + s);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.i(TAG, "onError: " + e);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.i(TAG, "onComplete");
-            }
-        };
-    }
-
-    @android.support.annotation.NonNull
-    private DisposableObserver<Long> longDisposableObserver() {
-        return new DisposableObserver<Long>() {
-            @Override
-            public void onNext(@NonNull Long s) {
-                Log.i(TAG, "onNext: " + s);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.i(TAG, "onError: " + e);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.i(TAG, "onComplete");
-            }
-        };
-    }
-
-    @android.support.annotation.NonNull
-    private DisposableObserver<String> stringDisposableObserver() {
-        return new DisposableObserver<String>() {
-            @Override
-            public void onNext(@NonNull String s) {
-                Log.i(TAG, "onNext: " + s);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.i(TAG, "onError: " + e);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.i(TAG, "onComplete");
-            }
-        };
     }
 
     @Override

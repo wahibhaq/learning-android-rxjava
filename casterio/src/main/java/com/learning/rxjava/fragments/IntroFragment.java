@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
+import com.learning.rxjava.introtorxtutorials.InspectionTutorial;
+import com.learning.rxjava.introtorxtutorials.Part2Inspection;
 import com.learning.rxjava.introtorxtutorials.Part2Reducing;
 import com.learning.rxjava.introtorxtutorials.ReducingSeqTutorial;
 import com.learning.rxjava.introtorxtutorials.Tutorial;
@@ -43,7 +45,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    ReducingSeqTutorial introtorx;
+    InspectionTutorial introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -109,8 +111,12 @@ public class IntroFragment extends Fragment {
 //        part2.convertingFutureTaskToObs();
 
         //Testing Filter Reduce exercises
-        introtorx = new Part2Reducing();
-        introtorx.skip();
+//        introtorx = new Part2Reducing();
+//        introtorx.skip();
+
+        //Testing Inspection techniques
+        introtorx = new Part2Inspection();
+
 
     }
 
