@@ -110,7 +110,7 @@ public class IntroFragment extends Fragment {
 
         //Testing Filter Reduce exercises
         introtorx = new Part2Reducing();
-        introtorx.filter();
+        introtorx.skip();
 
     }
 
