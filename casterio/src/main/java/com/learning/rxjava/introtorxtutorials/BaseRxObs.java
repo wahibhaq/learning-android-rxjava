@@ -5,6 +5,7 @@ import android.util.Log;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.observers.DisposableSingleObserver;
 
 class BaseRxObs {
 
@@ -66,6 +67,20 @@ class BaseRxObs {
             @Override
             public void onComplete() {
                 Log.i(TAG, "onComplete");
+            }
+        };
+    }
+
+    DisposableSingleObserver<Boolean> boolDisposableSingleObserver() {
+        return new DisposableSingleObserver<Boolean>() {
+            @Override
+            public void onSuccess(@NonNull Boolean bool) {
+                Log.i(TAG, "onSuccess: " + bool);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.i(TAG, "onError: " + e);
             }
         };
     }
