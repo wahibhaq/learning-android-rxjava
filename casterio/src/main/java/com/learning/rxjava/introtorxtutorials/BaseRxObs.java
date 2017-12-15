@@ -9,9 +9,8 @@ import io.reactivex.observers.DisposableSingleObserver;
 
 class BaseRxObs {
 
-    public static final String TAG = "BaseRx";
+    static final String TAG = "BaseRx";
 
-    @android.support.annotation.NonNull
     DisposableObserver<Integer> intDisposableObserver() {
         return new DisposableObserver<Integer>() {
             @Override
@@ -31,7 +30,6 @@ class BaseRxObs {
         };
     }
 
-    @android.support.annotation.NonNull
     DisposableObserver<Long> longDisposableObserver() {
         return new DisposableObserver<Long>() {
             @Override
@@ -51,7 +49,6 @@ class BaseRxObs {
         };
     }
 
-    @android.support.annotation.NonNull
     DisposableObserver<String> stringDisposableObserver() {
         return new DisposableObserver<String>() {
             @Override

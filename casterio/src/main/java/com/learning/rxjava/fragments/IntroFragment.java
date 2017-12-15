@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.InspectionTutorial;
+import com.learning.rxjava.introtorxtutorials.Part2CreatingSeq;
 import com.learning.rxjava.introtorxtutorials.Part2Inspection;
 import com.learning.rxjava.introtorxtutorials.Part2Reducing;
 import com.learning.rxjava.introtorxtutorials.ReducingSeqTutorial;
@@ -102,16 +103,12 @@ public class IntroFragment extends Fragment {
                     }
                 });
 
-        //testing katas
-//        Kata2FetchArticleObservable kata2 = new Kata2FetchArticleObservable();
-//        kata2.createAnObservable();
-
         //testing IntroToRx Tutorial exercises
 //        Part2CreatingSeq part2 = new Part2CreatingSeq();
 //        part2.convertingFutureTaskToObs();
 
         //Testing Filter Reduce exercises
-//        introtorx = new Part2Reducing();
+//        Part2Reducing introtorx = new Part2Reducing();
 //        introtorx.skip();
 
         //Testing Inspection techniques

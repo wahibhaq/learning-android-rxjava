@@ -4,13 +4,14 @@ package com.learning.rxjava.introtorxtutorials;
 import java.math.BigInteger;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
 
     private static final String TAG = Part2Inspection.class.getSimpleName();
 
-    private Disposable disposable;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public Part2Inspection() {
     }
@@ -30,9 +31,9 @@ public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
         });
 
         //getting if all numbers are prime or not
-        disposable = values
+        disposable.add(values
                 .all(this::isPrime)
-                .subscribeWith(boolDisposableSingleObserver());
+                .subscribeWith(boolDisposableSingleObserver()));
 
     }
 
@@ -42,14 +43,7 @@ public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
     }
 
     @Override
-    public void allWithFail() {
-
-    }
-
-    @Override
     public void clear() {
-        if(!disposable.isDisposed()) {
-            disposable.dispose();
-        }
+        disposable.clear();
     }
 }

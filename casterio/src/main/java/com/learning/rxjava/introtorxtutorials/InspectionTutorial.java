@@ -5,6 +5,4 @@ public interface InspectionTutorial extends Tutorial {
 
     void allWithSuccess();
 
-    void allWithFail();
-
 }

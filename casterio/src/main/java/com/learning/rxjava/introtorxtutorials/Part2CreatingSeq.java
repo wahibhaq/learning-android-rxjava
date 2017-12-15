@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
@@ -19,9 +19,9 @@ import io.reactivex.subjects.Subject;
 /**
  * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
  */
-class Part2CreatingSeq extends BaseRxObs implements Tutorial {
+public class Part2CreatingSeq extends BaseRxObs implements Tutorial {
 
-    private Disposable disposable;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public Part2CreatingSeq() {
     }
@@ -31,29 +31,29 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
      */
     public void createEmptyObservable() {
         Observable<String> values = Observable.empty();
-        disposable = values.subscribeWith(stringDisposableObserver());
+        disposable.add(values.subscribeWith(stringDisposableObserver()));
     }
 
     public void createNeverObservable() {
         Observable<String> values = Observable.never();
-        disposable = values.subscribeWith(stringDisposableObserver());
+        disposable.add(values.subscribeWith(stringDisposableObserver()));
     }
 
     public void createErrorObservable() {
         Observable<String> values = Observable.error(new Exception("Oops"));
-        disposable = values.subscribeWith(stringDisposableObserver());
+        disposable.add(values.subscribeWith(stringDisposableObserver()));
     }
 
     public void createDeferObservable() {
         Observable<Long> now = Observable.defer(() ->
                 Observable.just(System.currentTimeMillis()));
-        disposable = now.subscribe(aLong -> Log.i(TAG, "onAccept: " + aLong));
+        now.subscribe(aLong -> Log.i(TAG, "onAccept: " + aLong));
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        disposable = now.subscribe(aLong -> Log.i(TAG, "onAccept: " + aLong));
+        now.subscribe(aLong -> Log.i(TAG, "onAccept: " + aLong));
     }
 
     public void createCreateObservable() {
@@ -61,7 +61,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
             e.onNext("Hello");
             e.onComplete();
         });
-        disposable = values.subscribeWith(stringDisposableObserver());
+        disposable.add(values.subscribeWith(stringDisposableObserver()));
     }
 
     /**
@@ -71,7 +71,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
         Subject<String> subject = ReplaySubject.create();
         subject.onNext("first");
         subject.onNext("second");
-        disposable = subject.subscribe(s -> Log.i(TAG, "onAccept: " + s));
+        subject.subscribe(s -> Log.i(TAG, "onAccept: " + s));
         subject.onNext("third");
     }
 
@@ -81,7 +81,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
     public void createPublishSubject() {
         Subject<String> subject = PublishSubject.create();
         subject.onNext("first");
-        disposable = subject.subscribe(s -> Log.i(TAG, "onAccept: " + s));
+        subject.subscribe(s -> Log.i(TAG, "onAccept: " + s));
         subject.onNext("second");
     }
 
@@ -90,8 +90,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
      **/
     public void createRangeObservable() {
         Observable<Integer> values = Observable.range(10,100);
-        disposable = values
-                .subscribe(integer -> Log.i(TAG, "Integers Range: " + integer));
+        values.subscribe(integer -> Log.i(TAG, "Integers Range: " + integer));
     }
 
     /**
@@ -99,7 +98,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
      */
     public void createTimerObservable() {
         Observable<Long> values = Observable.timer(2, TimeUnit.SECONDS);
-        disposable = values.subscribe(
+        values.subscribe(
                 v -> Log.i(TAG, "onReceived: " + v),
                 e -> Log.i(TAG, "onError: " + e),
                 () -> Log.i(TAG, "onCompleted"));
@@ -115,7 +114,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
         blank.add("a");
         blank.add("b");
         Observable<String> values = Observable.fromIterable(blank);
-        disposable = values.subscribeWith(stringDisposableObserver());
+        disposable.add(values.subscribeWith(stringDisposableObserver()));
     }
 
     /**
@@ -154,9 +153,7 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
 
     @Override
     public void clear() {
-        if(!disposable.isDisposed()) {
-            disposable.dispose();
-        }
+        disposable.clear();
     }
 
     /**
@@ -169,8 +166,8 @@ class Part2CreatingSeq extends BaseRxObs implements Tutorial {
         });
         new Thread(futureTask).start();
 
-        Observable<String> observable = Observable.fromFuture(futureTask);
-        disposable = observable.subscribeWith(stringDisposableObserver());
+        Observable<String> observable = Observable.fromFuture(futureTask, 5,TimeUnit.SECONDS);
+        disposable.add(observable.subscribeWith(stringDisposableObserver()));
     }
 
 
