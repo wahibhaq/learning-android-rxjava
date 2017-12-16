@@ -2,15 +2,21 @@ package com.learning.rxjava.introtorxtutorials;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
 import io.reactivex.subjects.Subject;
@@ -160,6 +166,28 @@ public class Part2CreatingSeq extends BaseRxObs {
 
         Observable<String> observable = Observable.fromFuture(futureTask, 5,TimeUnit.SECONDS);
         disposable.add(observable.subscribeWith(stringDisposableObserver()));
+    }
+
+    public void createSingleObservable() {
+        Single<String> singleObs = Single.create(emitter -> {
+                   //List<ToDo> todosFromWeb = // query a webservice
+                   List<String> values = new ArrayList(Arrays.asList("a", "b", "c"));
+                    Log.i(TAG, "this is only called once");
+
+                    if(values.size() > 0)
+                        emitter.onSuccess("everything went fine");
+                    else
+                        emitter.onSuccess("everything went down");
+
+        });
+
+        Single<String> cachedSingleObs = singleObs.cache();
+        cachedSingleObs
+                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    Log.i(TAG, "for demo purpose in subscribed: " + s);
+                });
     }
 
 }

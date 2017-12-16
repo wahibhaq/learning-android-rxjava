@@ -101,7 +101,7 @@ public class IntroFragment extends Fragment {
 
         //testing IntroToRx Tutorial exercises
 //        Part2CreatingSeq introtorx = new Part2CreatingSeq();
-//        introtorx.convertingFutureTaskToObs();
+//        introtorx.createSingleObservable();
 
         //Testing Filter Reduce exercises
 //        Part2Reducing introtorx = new Part2Reducing();
@@ -113,7 +113,7 @@ public class IntroFragment extends Fragment {
 
         //Testing Aggregation techniques
         introtorx = new Part2Aggregation();
-        introtorx.single();
+        introtorx.toMultiMap();
 
     }
 
