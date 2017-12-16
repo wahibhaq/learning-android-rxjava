@@ -113,7 +113,7 @@ public class IntroFragment extends Fragment {
 
         //Testing Inspection techniques
         introtorx = new Part2Inspection();
-        introtorx.allWithSuccess();
+        introtorx.equals();
 
     }
 
