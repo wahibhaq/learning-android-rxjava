@@ -12,12 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.InspectionTutorial;
 import com.learning.rxjava.introtorxtutorials.Part2CreatingSeq;
-import com.learning.rxjava.introtorxtutorials.Part2Inspection;
-import com.learning.rxjava.introtorxtutorials.Part2Reducing;
-import com.learning.rxjava.introtorxtutorials.ReducingSeqTutorial;
-import com.learning.rxjava.introtorxtutorials.Tutorial;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -46,7 +41,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    InspectionTutorial introtorx;
+    Part2CreatingSeq introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -104,16 +99,16 @@ public class IntroFragment extends Fragment {
                 });
 
         //testing IntroToRx Tutorial exercises
-//        Part2CreatingSeq part2 = new Part2CreatingSeq();
-//        part2.convertingFutureTaskToObs();
+        Part2CreatingSeq introtorx = new Part2CreatingSeq();
+        introtorx.convertingFutureTaskToObs();
 
         //Testing Filter Reduce exercises
 //        Part2Reducing introtorx = new Part2Reducing();
 //        introtorx.skip();
 
         //Testing Inspection techniques
-        introtorx = new Part2Inspection();
-        introtorx.equals();
+//        introtorx = new Part2Inspection();
+//        introtorx.equals();
 
     }
 
@@ -149,6 +144,7 @@ public class IntroFragment extends Fragment {
         if(subscription != null && !subscription.isDisposed()) {
             subscription.dispose(); //In order to avoid memory leak
         }
+
         introtorx.clear();
     }
 

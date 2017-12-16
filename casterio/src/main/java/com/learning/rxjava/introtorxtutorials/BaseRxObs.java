@@ -4,12 +4,15 @@ package com.learning.rxjava.introtorxtutorials;
 import android.util.Log;
 
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 
-class BaseRxObs {
+public class BaseRxObs {
 
     static final String TAG = "BaseRx";
+
+    final CompositeDisposable disposable = new CompositeDisposable();
 
     DisposableObserver<Integer> intDisposableObserver() {
         return new DisposableObserver<Integer>() {
@@ -80,5 +83,9 @@ class BaseRxObs {
                 Log.i(TAG, "onError: " + e);
             }
         };
+    }
+
+    public void clear() {
+        disposable.clear();
     }
 }

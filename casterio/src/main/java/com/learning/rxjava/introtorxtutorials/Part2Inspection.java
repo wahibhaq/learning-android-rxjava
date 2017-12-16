@@ -7,14 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
 
     private static final String TAG = Part2Inspection.class.getSimpleName();
-
-    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public Part2Inspection() {
     }
@@ -83,8 +79,4 @@ public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
         return bigInt.isProbablePrime(100);
     }
 
-    @Override
-    public void clear() {
-        disposable.clear();
-    }
 }

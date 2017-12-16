@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.ReplaySubject;
@@ -19,9 +18,7 @@ import io.reactivex.subjects.Subject;
 /**
  * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
  */
-public class Part2CreatingSeq extends BaseRxObs implements Tutorial {
-
-    private final CompositeDisposable disposable = new CompositeDisposable();
+public class Part2CreatingSeq extends BaseRxObs {
 
     public Part2CreatingSeq() {
     }
@@ -151,11 +148,6 @@ public class Part2CreatingSeq extends BaseRxObs implements Tutorial {
         });
     }
 
-    @Override
-    public void clear() {
-        disposable.clear();
-    }
-
     /**
      * The observable emits the result of the FutureTask when it is available and then terminates.
      */
@@ -169,6 +161,5 @@ public class Part2CreatingSeq extends BaseRxObs implements Tutorial {
         Observable<String> observable = Observable.fromFuture(futureTask, 5,TimeUnit.SECONDS);
         disposable.add(observable.subscribeWith(stringDisposableObserver()));
     }
-
 
 }

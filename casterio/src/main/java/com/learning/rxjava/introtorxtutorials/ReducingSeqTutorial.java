@@ -1,7 +1,7 @@
 package com.learning.rxjava.introtorxtutorials;
 
 
-public interface ReducingSeqTutorial extends Tutorial {
+public interface ReducingSeqTutorial {
 
     void filter();
 

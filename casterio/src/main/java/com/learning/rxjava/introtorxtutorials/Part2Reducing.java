@@ -1,19 +1,13 @@
 package com.learning.rxjava.introtorxtutorials;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
 https://github.com/Froussios/Intro-To-RxJava/blob/master/Part%202%20-%20Sequence%20Basics/2.%20Reducing%20a%20sequence.md
  */
 public class Part2Reducing extends BaseRxObs implements ReducingSeqTutorial {
-
-    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public Part2Reducing() {
     }
@@ -73,8 +67,4 @@ public class Part2Reducing extends BaseRxObs implements ReducingSeqTutorial {
     // and even takeLast(), skipLast()
     // and also takeUntil(), skipUntil() which takes items while the predicate is false
 
-    @Override
-    public void clear() {
-        disposable.clear();
-    }
 }
