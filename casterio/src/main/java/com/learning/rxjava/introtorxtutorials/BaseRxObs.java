@@ -100,6 +100,20 @@ public class BaseRxObs {
         };
     }
 
+    DisposableSingleObserver<String> stringDisposableSingleObserver() {
+        return new DisposableSingleObserver<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Log.i(TAG, "onSuccess: " + s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i(TAG, "onError: " + e);
+            }
+        };
+    }
+
     DisposableMaybeObserver<Long> longDisposableMaybeObserver() {
         return new DisposableMaybeObserver<Long>() {
             @Override
@@ -138,19 +152,26 @@ public class BaseRxObs {
         };
     }
 
-    DisposableSingleObserver<String> stringDisposableSingleObserver() {
-        return new DisposableSingleObserver<String>() {
+    DisposableMaybeObserver<Integer> intDisposableMaybeObserver() {
+        return new DisposableMaybeObserver<Integer>() {
             @Override
-            public void onSuccess(String s) {
-                Log.i(TAG, "onSuccess: " + s);
+            public void onSuccess(Integer aLong) {
+                Log.i(TAG, "onSuccess: " + aLong);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.i(TAG, "onError: " + e);
             }
+
+            @Override
+            public void onComplete() {
+                Log.i(TAG, "onComplete");
+            }
         };
     }
+
+
 
     public void clear() {
         disposable.clear();

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/casterio/casterio.iml" filepath="$PROJECT_DIR$/casterio/casterio.iml" />
-      <module fileurl="file://$PROJECT_DIR$/casterio/casterio.iml" filepath="$PROJECT_DIR$/casterio/casterio.iml" />
       <module fileurl="file://$PROJECT_DIR$/learning-android-rxjava.iml" filepath="$PROJECT_DIR$/learning-android-rxjava.iml" />
     </modules>
   </component>

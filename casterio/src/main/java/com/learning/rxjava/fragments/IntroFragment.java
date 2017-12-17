@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.Part2Aggregation;
-import com.learning.rxjava.introtorxtutorials.Part2CreatingSeq;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -113,7 +112,7 @@ public class IntroFragment extends Fragment {
 
         //Testing Aggregation techniques
         introtorx = new Part2Aggregation();
-        introtorx.toMultiMap();
+        introtorx.flatMap();
 
     }
 

@@ -2,10 +2,18 @@ package com.learning.rxjava.introtorxtutorials
 
 import android.util.Log
 import io.reactivex.Observable
+import io.reactivex.ObservableSource
+import io.reactivex.Single
+import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
+import org.reactivestreams.Subscriber
+import java.util.*
 import java.util.concurrent.TimeUnit
+import java.util.stream.Collectors
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
 class Part2Aggregation() : BaseRxObs(), AggregationTutorial {
@@ -107,7 +115,7 @@ class Part2Aggregation() : BaseRxObs(), AggregationTutorial {
                         {name -> name.name},
                         {year -> year.productionYear},
                         {LinkedHashMap<String, Int>()})
-                .subscribe({v -> Log.i(TAG, v.toString())}))
+                .subscribe(DisplayConsumer("toMap")))
     }
 
     /**
@@ -121,6 +129,86 @@ class Part2Aggregation() : BaseRxObs(), AggregationTutorial {
                         { LinkedHashMap<String, ArrayList<String>>() }
 
 
-                ).subscribe(Consumer { Log.i(TAG, it.toString()) }))
+                ).subscribe(DisplayConsumer("toMultiMap")))
+    }
+
+    override fun map() {
+        val values = Observable.just("haha", "zoyo", "titi")
+        disposable.add(values
+                .map { it -> it.toUpperCase() }
+                .subscribeWith(stringDisposableObserver()))
+    }
+
+    /**
+     * Used with casting. There's already a cast() operator but it will give a ClassCastException
+     * if source has any different type. ofType() will only filter the ones which are of the
+     * type specified
+     */
+    override fun ofType() {
+        val values: Observable<*> = Observable.just(4, 1, "2", 3)
+
+        disposable.add(values
+                .ofType(Int::class.java)
+                .subscribeWith(intDisposableObserver()))
+    }
+
+    /**
+     * The information captured by timestamp and timeInterval is very useful for logging and
+     * debugging. It is Rx's way of acquiring information about the asynchronicity of sequences.
+     */
+    override fun logTimeInterval() {
+        val values = Observable.interval(1, TimeUnit.SECONDS)
+        disposable.add(values
+                .take(10)
+                .timeInterval()
+                .subscribe(DisplayConsumer("timeInterval")))
+    }
+
+    class Developer(val name: String) {
+        val languages: MutableSet<String> = LinkedHashSet()
+
+        fun add(language: String){
+            languages.add(language)
+        }
+    }
+
+    /**
+     * Flatmap flatten a sequence of observables, as produced by their selector function, into
+     * one observable.
+     * The observable returned by flatMap will emit all the values emitted by all the
+     * observables produced by the transformation function. Values from the same observable will
+     * be in order, but they may be interleaved with values from other observables.
+     */
+    override fun flatMap() {
+        val team = ArrayList<Developer>()
+
+        val polyglot = Developer("esoteric")
+        polyglot.add("clojure")
+        polyglot.add("scala")
+        polyglot.add("groovy")
+        polyglot.add("go")
+
+        val busy = Developer("pragmatic")
+        busy.add("java")
+        busy.add("javascript")
+
+        team.add(polyglot)
+        team.add(busy)
+
+        val teamLanguages = Observable.fromIterable(team)
+                .flatMapIterable ({ t: Developer -> t.languages },
+                        { dev: Developer, language: String -> dev.name + " - " + language }) //This one is a mapper and an optional field
+
+        disposable.add(teamLanguages
+                .subscribeWith(stringDisposableObserver()))
+
+    }
+
+    private val bikeObs = Observable.just("honda 125", "metro 70")
+    override fun concatMap() {
+        disposable.add(carObs
+                .concatMap { car: Car -> bikeObs.map { bike: String ->
+                    car.name + "-" +  bike } }
+                .subscribe(DisplayConsumer("concatMap")))
     }
 }

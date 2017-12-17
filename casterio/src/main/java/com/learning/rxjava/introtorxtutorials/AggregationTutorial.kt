@@ -17,4 +17,14 @@ interface AggregationTutorial {
     fun toMap()
 
     fun toMultiMap()
+
+    fun map()
+
+    fun ofType()
+
+    fun logTimeInterval()
+
+    fun flatMap()
+
+    fun concatMap()
 }
