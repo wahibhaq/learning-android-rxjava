@@ -9,9 +9,9 @@ import io.reactivex.Observable;
 /**
 https://github.com/Froussios/Intro-To-RxJava/blob/master/Part%202%20-%20Sequence%20Basics/2.%20Reducing%20a%20sequence.md
  */
-public class Part2Reducing extends BaseRxObs implements ReducingSeqTutorial {
+public class Reducing extends BaseRxObs implements ReducingSeqContract {
 
-    public Part2Reducing() {
+    public Reducing() {
     }
 
     @Override

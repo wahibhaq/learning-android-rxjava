@@ -1,7 +1,7 @@
 package com.learning.rxjava.introtorxtutorials.part2;
 
 
-public interface ReducingSeqTutorial {
+public interface ReducingSeqContract {
 
     void filter();
 

@@ -26,9 +26,9 @@ import io.reactivex.subjects.Subject;
 /**
  * https://github.com/Froussios/Intro-To-RxJava/tree/master/Part%202%20-%20Sequence%20Basics
  */
-public class Part2CreatingSeq extends BaseRxObs {
+public class CreatingSequence extends BaseRxObs {
 
-    public Part2CreatingSeq() {
+    public CreatingSequence() {
     }
 
     /**

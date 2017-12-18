@@ -1,6 +1,6 @@
 package com.learning.rxjava.introtorxtutorials.part2
 
-interface AggregationTutorial {
+interface AggregationContract {
 
     fun count()
 

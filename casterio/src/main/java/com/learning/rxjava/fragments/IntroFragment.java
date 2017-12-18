@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.part2.Part2Aggregation;
+import com.learning.rxjava.introtorxtutorials.part2.Aggregation;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -41,7 +41,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    Part2Aggregation introtorx;
+    Aggregation introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -99,19 +99,19 @@ public class IntroFragment extends Fragment {
                 });
 
         //testing IntroToRx Tutorial exercises
-//        Part2CreatingSeq introtorx = new Part2CreatingSeq();
+//        CreatingSequence introtorx = new CreatingSequence();
 //        introtorx.createSingleObservable();
 
         //Testing Filter Reduce exercises
-//        Part2Reducing introtorx = new Part2Reducing();
+//        Reducing introtorx = new Reducing();
 //        introtorx.skip();
 
         //Testing Inspection techniques
-//        introtorx = new Part2Inspection();
+//        introtorx = new Inspection();
 //        introtorx.equals();
 
         //Testing Aggregation techniques
-        introtorx = new Part2Aggregation();
+        introtorx = new Aggregation();
         introtorx.flatMap();
 
     }

@@ -10,11 +10,11 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public class Part2Inspection extends BaseRxObs implements InspectionTutorial {
+public class Inspection extends BaseRxObs implements InspectionContract {
 
-    private static final String TAG = Part2Inspection.class.getSimpleName();
+    private static final String TAG = Inspection.class.getSimpleName();
 
-    public Part2Inspection() {
+    public Inspection() {
     }
 
     /**

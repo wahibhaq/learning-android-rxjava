@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
-class Part2Aggregation : BaseRxObs(), AggregationTutorial {
+class Aggregation : BaseRxObs(), AggregationContract {
 
     override fun count() {
         val values = Observable.range(0, 10)
