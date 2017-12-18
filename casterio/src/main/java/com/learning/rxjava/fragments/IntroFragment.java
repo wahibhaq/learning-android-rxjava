@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.part2.Aggregation;
+import com.learning.rxjava.introtorxtutorials.part3.LeavingMonad;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -32,16 +32,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by wahibulhaq on 17/04/16.
- */
 public class IntroFragment extends Fragment {
 
     private static final String TAG = IntroFragment.class.getSimpleName();
 
     private Disposable subscription;
 
-    Aggregation introtorx;
+    LeavingMonad introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -111,8 +108,16 @@ public class IntroFragment extends Fragment {
 //        introtorx.equals();
 
         //Testing Aggregation techniques
-        introtorx = new Aggregation();
-        introtorx.flatMap();
+//        introtorx = new Aggregation();
+//        introtorx.flatMap();
+
+        //Testing Taming Sequence tutorial
+//            introtorx = new TamingSequence();
+//            introtorx.trySubAndDisposeEvents();
+
+        //Testing Blocking Obs tutorial
+        introtorx = new LeavingMonad();
+        introtorx.blockingLatest();
 
     }
 

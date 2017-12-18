@@ -25,7 +25,7 @@ class Aggregation : BaseRxObs(), AggregationContract {
     /**
      * Instead of getting a java.util.NoSuchElementException,
      * you can use firstOrDefault to get a default value when the sequence is empty.
-     * last and lastOrDefault work in the same way as first
+     * blockingLast and lastOrDefault work in the same way as first
      */
     override fun first() {
         val values = Observable.interval(1, TimeUnit.SECONDS)
