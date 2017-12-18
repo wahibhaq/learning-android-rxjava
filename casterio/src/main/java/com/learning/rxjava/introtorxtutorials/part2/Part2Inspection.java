@@ -1,5 +1,7 @@
-package com.learning.rxjava.introtorxtutorials;
+package com.learning.rxjava.introtorxtutorials.part2;
 
+
+import com.learning.rxjava.introtorxtutorials.BaseRxObs;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

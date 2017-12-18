@@ -1,8 +1,10 @@
-package com.learning.rxjava.introtorxtutorials;
+package com.learning.rxjava.introtorxtutorials.part2;
 
 
 import android.util.Log;
 import android.widget.Toast;
+
+import com.learning.rxjava.introtorxtutorials.BaseRxObs;
 
 import java.util.ArrayList;
 import java.util.Arrays;

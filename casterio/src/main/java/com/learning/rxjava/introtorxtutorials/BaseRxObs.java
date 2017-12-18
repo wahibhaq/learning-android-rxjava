@@ -11,11 +11,11 @@ import io.reactivex.observers.DisposableSingleObserver;
 
 public class BaseRxObs {
 
-    static final String TAG = "BaseRx";
+    protected static final String TAG = "BaseRx";
 
-    final CompositeDisposable disposable = new CompositeDisposable();
+    protected final CompositeDisposable disposable = new CompositeDisposable();
 
-    DisposableObserver<Integer> intDisposableObserver() {
+    protected DisposableObserver<Integer> intDisposableObserver() {
         return new DisposableObserver<Integer>() {
             @Override
             public void onNext(@NonNull Integer s) {
@@ -34,7 +34,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableObserver<Long> longDisposableObserver() {
+    protected DisposableObserver<Long> longDisposableObserver() {
         return new DisposableObserver<Long>() {
             @Override
             public void onNext(@NonNull Long s) {
@@ -53,7 +53,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableObserver<String> stringDisposableObserver() {
+    protected DisposableObserver<String> stringDisposableObserver() {
         return new DisposableObserver<String>() {
             @Override
             public void onNext(@NonNull String s) {
@@ -72,7 +72,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableSingleObserver<Boolean> boolDisposableSingleObserver() {
+    protected DisposableSingleObserver<Boolean> boolDisposableSingleObserver() {
         return new DisposableSingleObserver<Boolean>() {
             @Override
             public void onSuccess(@NonNull Boolean bool) {
@@ -86,7 +86,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableSingleObserver<Long> longDisposableSingleObserver() {
+    protected DisposableSingleObserver<Long> longDisposableSingleObserver() {
         return new DisposableSingleObserver<Long>() {
             @Override
             public void onSuccess(Long aLong) {
@@ -100,7 +100,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableSingleObserver<String> stringDisposableSingleObserver() {
+    protected DisposableSingleObserver<String> stringDisposableSingleObserver() {
         return new DisposableSingleObserver<String>() {
             @Override
             public void onSuccess(String s) {
@@ -114,7 +114,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableMaybeObserver<Long> longDisposableMaybeObserver() {
+    protected DisposableMaybeObserver<Long> longDisposableMaybeObserver() {
         return new DisposableMaybeObserver<Long>() {
             @Override
             public void onSuccess(Long aLong) {
@@ -133,7 +133,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableMaybeObserver<String> stringDisposableMaybeObserver() {
+    protected DisposableMaybeObserver<String> stringDisposableMaybeObserver() {
         return new DisposableMaybeObserver<String>() {
             @Override
             public void onSuccess(String s) {
@@ -152,7 +152,7 @@ public class BaseRxObs {
         };
     }
 
-    DisposableMaybeObserver<Integer> intDisposableMaybeObserver() {
+    protected DisposableMaybeObserver<Integer> intDisposableMaybeObserver() {
         return new DisposableMaybeObserver<Integer>() {
             @Override
             public void onSuccess(Integer aLong) {
@@ -170,8 +170,6 @@ public class BaseRxObs {
             }
         };
     }
-
-
 
     public void clear() {
         disposable.clear();

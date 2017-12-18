@@ -1,4 +1,4 @@
-package com.learning.rxjava.introtorxtutorials;
+package com.learning.rxjava.introtorxtutorials.part2;
 
 
 public interface ReducingSeqTutorial {

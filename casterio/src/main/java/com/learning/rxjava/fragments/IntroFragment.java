@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.Part2Aggregation;
+import com.learning.rxjava.introtorxtutorials.part2.Part2Aggregation;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 

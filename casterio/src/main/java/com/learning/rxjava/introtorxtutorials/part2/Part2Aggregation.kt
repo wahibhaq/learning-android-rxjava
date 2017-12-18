@@ -1,22 +1,17 @@
-package com.learning.rxjava.introtorxtutorials
+package com.learning.rxjava.introtorxtutorials.part2
 
 import android.util.Log
+import com.learning.rxjava.introtorxtutorials.BaseRxObs
+import com.learning.rxjava.introtorxtutorials.DisplayConsumer
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.Single
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Consumer
 import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
-import org.reactivestreams.Subscriber
 import java.util.*
 import java.util.concurrent.TimeUnit
-import java.util.stream.Collectors
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 
-class Part2Aggregation() : BaseRxObs(), AggregationTutorial {
+class Part2Aggregation : BaseRxObs(), AggregationTutorial {
 
     override fun count() {
         val values = Observable.range(0, 10)
