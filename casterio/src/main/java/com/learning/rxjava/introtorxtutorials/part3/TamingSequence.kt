@@ -82,7 +82,7 @@ class TamingSequence : BaseRxObs() {
      * Esposing your Subject reference is unsafe as anyone can call onNext on our Subject and
      * inject values in our sequence.
      *
-     * hide() Hides the identity of this Observable and its Disposable. Returned is an Observabele
+     * hide() Hides the identity of this Observable and its Disposable. Returned is an Observable
      * which is safe to expose because Observable is immutable.
      */
     fun exposeSubjectAsObs() : Observable<Int> {
@@ -91,6 +91,5 @@ class TamingSequence : BaseRxObs() {
 
         return subject.hide()
     }
-
 
 }
