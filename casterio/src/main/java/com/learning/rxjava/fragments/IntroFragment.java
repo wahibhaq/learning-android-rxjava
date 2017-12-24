@@ -15,6 +15,7 @@ import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.part3.AdvancedErrorHandling;
 import com.learning.rxjava.introtorxtutorials.part3.CombiningSequences;
 import com.learning.rxjava.introtorxtutorials.part3.LeavingMonad;
+import com.learning.rxjava.introtorxtutorials.part3.TimeShiftedSequences;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -40,7 +41,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    CombiningSequences introtorx;
+    TimeShiftedSequences introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -126,8 +127,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.retryWhenEncounters();
 
         //Testing combinig sequence techniques
-        introtorx = new CombiningSequences();
-        introtorx.combineLatest();
+//        introtorx = new CombiningSequences();
+//        introtorx.combineLatest();
+
+        //Testing using time shifted sequences
+        introtorx = new TimeShiftedSequences();
+        introtorx.timeout();
     }
 
     @Nullable
