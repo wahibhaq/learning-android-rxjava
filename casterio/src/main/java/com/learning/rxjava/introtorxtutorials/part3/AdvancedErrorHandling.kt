@@ -57,7 +57,7 @@ class AdvancedErrorHandling : BaseRxObs() {
 
     /**
      * If you want to have more control over restart of subscription in case of error.
-     * 
+     *
      */
     fun retryWhenEncounters() {
         values.retryWhen({ t -> t.take(2).delay(2, TimeUnit.SECONDS) })

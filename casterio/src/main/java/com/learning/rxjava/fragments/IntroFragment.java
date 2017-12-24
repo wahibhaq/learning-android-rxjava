@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.part3.AdvancedErrorHandling;
+import com.learning.rxjava.introtorxtutorials.part3.CombiningSequences;
 import com.learning.rxjava.introtorxtutorials.part3.LeavingMonad;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
@@ -39,7 +40,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    AdvancedErrorHandling introtorx;
+    CombiningSequences introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -121,8 +122,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.blockingLatest();
 
         //Testing advance error handling techniques
-        introtorx = new AdvancedErrorHandling();
-        introtorx.retryWhenEncounters();
+//        introtorx = new AdvancedErrorHandling();
+//        introtorx.retryWhenEncounters();
+
+        //Testing combinig sequence techniques
+        introtorx = new CombiningSequences();
+        introtorx.combineLatest();
     }
 
     @Nullable
