@@ -137,7 +137,7 @@ public class IntroFragment extends Fragment {
 
         //Understanding Hot Observable sources
         introtorx = new HotObservables();
-        introtorx.cacheWithDispose();
+        introtorx.cacheEmissions();
     }
 
     @Nullable
