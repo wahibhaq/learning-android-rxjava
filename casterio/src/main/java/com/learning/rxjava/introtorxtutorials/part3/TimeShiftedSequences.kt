@@ -3,10 +3,8 @@ package com.learning.rxjava.introtorxtutorials.part3
 import com.learning.rxjava.introtorxtutorials.BaseRxObs
 import com.learning.rxjava.introtorxtutorials.DisplayConsumer
 import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
-import io.reactivex.ObservableSource
-import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
+import java.util.concurrent.TimeUnit
 
 
 class TimeShiftedSequences : BaseRxObs() {
