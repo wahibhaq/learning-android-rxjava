@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.part3.AdvancedErrorHandling;
 import com.learning.rxjava.introtorxtutorials.part3.CombiningSequences;
+import com.learning.rxjava.introtorxtutorials.part3.CustomOperators;
 import com.learning.rxjava.introtorxtutorials.part3.HotObservables;
 import com.learning.rxjava.introtorxtutorials.part3.LeavingMonad;
 import com.learning.rxjava.introtorxtutorials.part3.TimeShiftedSequences;
@@ -42,7 +43,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    HotObservables introtorx;
+    CustomOperators introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -136,8 +137,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.timeout();
 
         //Understanding Hot Observable sources
-        introtorx = new HotObservables();
-        introtorx.cacheEmissions();
+//        introtorx = new HotObservables();
+//        introtorx.usingConnect()
+
+        //Trying out Custom Operators
+        introtorx = new CustomOperators();
+        introtorx.serializeObservable();
     }
 
     @Nullable
