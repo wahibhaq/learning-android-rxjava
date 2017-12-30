@@ -1,4 +1,4 @@
-package com.learning.rxjava.introtorxtutorials.part3;
+package com.learning.rxjava.introtorxtutorials.part3_taming_sequence;
 
 
 import io.reactivex.ObservableOperator;

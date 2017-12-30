@@ -1,4 +1,4 @@
-package com.learning.rxjava.introtorxtutorials.part2
+package com.learning.rxjava.introtorxtutorials.part2_sequence_basics
 
 import android.util.Log
 import com.learning.rxjava.introtorxtutorials.BaseRxObs

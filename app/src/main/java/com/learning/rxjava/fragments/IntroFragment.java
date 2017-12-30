@@ -12,12 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
-import com.learning.rxjava.introtorxtutorials.part3.AdvancedErrorHandling;
-import com.learning.rxjava.introtorxtutorials.part3.CombiningSequences;
-import com.learning.rxjava.introtorxtutorials.part3.CustomOperators;
-import com.learning.rxjava.introtorxtutorials.part3.HotObservables;
-import com.learning.rxjava.introtorxtutorials.part3.LeavingMonad;
-import com.learning.rxjava.introtorxtutorials.part3.TimeShiftedSequences;
+import com.learning.rxjava.introtorxtutorials.part4_concurrency.SchedulingThreading;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -43,7 +38,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    CustomOperators introtorx;
+    SchedulingThreading introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -141,8 +136,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.usingConnect()
 
         //Trying out Custom Operators
-        introtorx = new CustomOperators();
-        introtorx.serializeObservable();
+//        introtorx = new CustomOperators();
+//        introtorx.serializeObservable();
+
+        //Understanding Scheduling and Threading
+        introtorx = new SchedulingThreading();
+        introtorx.newThreadScheduler();
     }
 
     @Nullable

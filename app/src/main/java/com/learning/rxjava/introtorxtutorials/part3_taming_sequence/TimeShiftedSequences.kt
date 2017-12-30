@@ -1,4 +1,4 @@
-package com.learning.rxjava.introtorxtutorials.part3
+package com.learning.rxjava.introtorxtutorials.part3_taming_sequence
 
 import com.learning.rxjava.introtorxtutorials.BaseRxObs
 import com.learning.rxjava.introtorxtutorials.DisplayConsumer

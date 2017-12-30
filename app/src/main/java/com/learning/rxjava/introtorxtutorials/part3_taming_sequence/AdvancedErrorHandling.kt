@@ -1,13 +1,9 @@
-package com.learning.rxjava.introtorxtutorials.part3
+package com.learning.rxjava.introtorxtutorials.part3_taming_sequence
 
 import com.learning.rxjava.introtorxtutorials.BaseRxObs
 import com.learning.rxjava.introtorxtutorials.DisplayConsumer
 import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.thread
 
 
 class AdvancedErrorHandling : BaseRxObs() {

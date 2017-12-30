@@ -1,8 +1,7 @@
-package com.learning.rxjava.introtorxtutorials.part2;
+package com.learning.rxjava.introtorxtutorials.part2_sequence_basics;
 
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.learning.rxjava.introtorxtutorials.BaseRxObs;
 
@@ -13,7 +12,6 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
