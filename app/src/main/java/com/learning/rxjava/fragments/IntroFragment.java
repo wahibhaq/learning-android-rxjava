@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
 import com.learning.rxjava.introtorxtutorials.part4_concurrency.SchedulingThreading;
+import com.learning.rxjava.introtorxtutorials.part4_concurrency.SequenceOfCoincidences;
 import com.learning.rxjava.models.Gist;
 import com.learning.rxjava.models.GistFile;
 
@@ -38,7 +39,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    SchedulingThreading introtorx;
+    SequenceOfCoincidences introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -140,8 +141,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.serializeObservable();
 
         //Understanding Scheduling and Threading
-        introtorx = new SchedulingThreading();
-        introtorx.newThreadScheduler();
+//        introtorx = new SchedulingThreading();
+//        introtorx.newThreadScheduler();
+
+        //Understanding Sequences, States and Windows
+        introtorx = new SequenceOfCoincidences();
+        introtorx.usingGroupJoin();
     }
 
     @Nullable
