@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.learning.rxjava.R;
+import com.learning.rxjava.introtorxtutorials.part4_concurrency.BackPressure;
 import com.learning.rxjava.introtorxtutorials.part4_concurrency.SchedulingThreading;
 import com.learning.rxjava.introtorxtutorials.part4_concurrency.SequenceOfCoincidences;
 import com.learning.rxjava.models.Gist;
@@ -39,7 +40,7 @@ public class IntroFragment extends Fragment {
 
     private Disposable subscription;
 
-    SequenceOfCoincidences introtorx;
+    BackPressure introtorx;
 
     public static IntroFragment newInstance() {
         return new IntroFragment();
@@ -145,8 +146,12 @@ public class IntroFragment extends Fragment {
 //        introtorx.newThreadScheduler();
 
         //Understanding Sequences, States and Windows
-        introtorx = new SequenceOfCoincidences();
-        introtorx.usingGroupJoin();
+//        introtorx = new SequenceOfCoincidences();
+//        introtorx.usingGroupJoin();
+
+        //Understanding and trying Backpressure concepts
+        introtorx = new BackPressure();
+        introtorx.usingBufferToAvoidBackPressure();
     }
 
     @Nullable

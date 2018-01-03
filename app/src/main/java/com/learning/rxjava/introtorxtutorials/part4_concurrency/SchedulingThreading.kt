@@ -13,6 +13,14 @@ import java.util.concurrent.TimeUnit
 /**
  * Rx is single-threaded by default.
  * In Rx you don't juggle threads directly. Instead you wrap them in policies called Scheduler.
+ *
+ * The existing schedulers are as follows:
+ *
+ * trampoline queues work on the current thread to be executed after the current work completes.
+ * newThread creates a new thread for each scheduled unit of work.
+ * computation is intended for CPU work
+ * io is intended for IO work
+ * test is useful for testing and debugging.
  */
 class SchedulingThreading : BaseRxObs() {
 
