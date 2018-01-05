@@ -2,14 +2,15 @@ package com.learning.rxjava.introtorxtutorials.part4_concurrency
 
 import android.util.Log
 import com.learning.rxjava.introtorxtutorials.BaseRxObs
+import com.learning.rxjava.introtorxtutorials.DisplayConsumer
+import io.reactivex.BackpressureOverflowStrategy
+import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.functions.Consumer
+import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.Flowable
-
-
-
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -159,4 +160,90 @@ class BackPressure : BaseRxObs() {
             source.onNext(i)
         }
     }
+
+    /**
+     * This operator in its parameterless form reintroduces an unbounded buffer between the upstream
+     * source and the downstream operator. Being unbounded means as long as the JVM doesn't run out
+     * of memory, it can handle almost any amount coming from a bursty source.
+     *
+     * In this example, the observeOn goes with a very low buffer size yet there is no
+     * MissingBackpressureException as onBackpressureBuffer soaks up all the 1 million values and
+     * hands over small batches of it to observeOn.
+     *
+     * range() supports backpressure
+     *
+     * There are 4 additional overloads of onBackpressureBuffer. onBackpressureBuffer(int capacity)
+     * but the relevance of this operator is decreasing as more and more operators now allow setting
+     * their buffer sizes.
+     */
+    fun usingOnBackPressureBuffer() {
+        Flowable.range(1, 1_000_000)
+                .onBackpressureBuffer()
+                .observeOn(Schedulers.computation(), true, 8)
+                .subscribe({}, {it.printStackTrace()})
+    }
+
+    /**
+     * This overload is actually more useful as it let's one define what to do in case the capacity
+     * has been reached.
+     *
+     * DROP_OLDEST: Drop the oldest value from the buffer.
+     * DROP_LATEST: Drop the latest value from the buffer.
+     */
+    fun usingOnBackPressureWithStrategy() {
+        Flowable.range(1, 1_000_000)
+                .onBackpressureBuffer(2, { },
+                        BackpressureOverflowStrategy.DROP_OLDEST)
+                .observeOn(Schedulers.computation())
+                .subscribe( DisplayConsumer("BackPressureStrategy") ,
+                        Consumer<Throwable>{ it.printStackTrace() })
+    }
+
+    /**
+     * Whenever the downstream is not ready to receive values, this operator will drop that element
+     * from the sequence.
+     *
+     * When to use? This operator is useful when one can safely ignore values from a source (such as
+     * mouse moves or current GPS location signals) as there will be more up-to-date values later on.
+     */
+    fun usingOnBackPressureDrop() {
+        Flowable.interval(1, TimeUnit.MINUTES)
+                .onBackpressureDrop()
+                .observeOn(Schedulers.io())
+                .doOnNext { t -> /** apiManager.getSomeThing() **/ }
+                .subscribe()
+    }
+
+    /**
+     * This operator keeps only the latest value and practically overwrites older, undelivered values.
+     *
+     * When to use? For example, if the user clicks a lot on the screen, we'd still want to react
+     * to its latest input.
+     */
+    fun usingOnBackPressureLatest() {
+        Flowable.interval(1, TimeUnit.MINUTES)
+                .onBackpressureLatest()
+                .observeOn(Schedulers.computation())
+                .subscribe({ event -> /**compute(event.x, event.y)**/ },
+                        {it.printStackTrace()})
+    }
+
+    /**
+     * The most basic backpressure aware source is created via just()
+     * just() is great when there is a constant value we'd like to jump-start a sequence.
+     */
+    fun usingJustWithFlowable() {
+        disposable.add(
+                Flowable.just(10)
+                .subscribeWith(intDisposableSubscriber()))
+    }
+
+    var counter = 0
+    fun computeValue() = ++counter
+
+    fun usingFromCallable() {
+
+    }
+
+
 }

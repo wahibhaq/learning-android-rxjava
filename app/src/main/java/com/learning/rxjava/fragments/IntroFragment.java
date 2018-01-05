@@ -151,7 +151,7 @@ public class IntroFragment extends Fragment {
 
         //Understanding and trying Backpressure concepts
         introtorx = new BackPressure();
-        introtorx.usingBufferToAvoidBackPressure();
+        introtorx.usingJustWithFlowable();
     }
 
     @Nullable

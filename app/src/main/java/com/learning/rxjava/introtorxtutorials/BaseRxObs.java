@@ -8,6 +8,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 public class BaseRxObs {
 
@@ -167,6 +168,25 @@ public class BaseRxObs {
             @Override
             public void onComplete() {
                 Log.i(TAG, "onComplete");
+            }
+        };
+    }
+
+    protected DisposableSubscriber<Integer> intDisposableSubscriber() {
+        return new DisposableSubscriber<Integer>() {
+            @Override
+            public void onNext(Integer integer) {
+                Log.i(TAG, "onNext: " + integer);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.i(TAG, "onError: " + t);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.i(TAG, "onComplete ");
             }
         };
     }
