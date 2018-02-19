@@ -206,4 +206,23 @@ class Aggregation : BaseRxObs(), AggregationContract {
                     car.name + "-" +  bike } }
                 .subscribe(DisplayConsumer("concatMap")))
     }
+
+    //https://android.jlelse.eu/useful-rx-snippets-1-1f390ce727a7
+    fun getNameInitials() {
+        disposable.add(
+            Observable.fromArray("Some Name", "Some Other Name")
+                .map { it.split(' ') }
+                .flatMap { names ->
+                    Observable.fromIterable(names)
+                        .filter { it.isNotEmpty() }
+                        .takeLast(2)
+                        .reduce("", { acc: String, element: String ->
+                            "$acc${element[0]}"
+                        })
+                        .map { it.toUpperCase() }
+                        .filter { it.isNotEmpty() }
+                        .toObservable()
+                }.subscribeWith(stringDisposableObserver())
+        )
+    }
 }

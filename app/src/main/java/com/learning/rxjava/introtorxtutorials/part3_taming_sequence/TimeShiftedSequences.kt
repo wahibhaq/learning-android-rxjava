@@ -4,6 +4,7 @@ import com.learning.rxjava.introtorxtutorials.BaseRxObs
 import com.learning.rxjava.introtorxtutorials.DisplayConsumer
 import io.reactivex.Observable
 import io.reactivex.functions.Function
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 
@@ -154,4 +155,11 @@ class TimeShiftedSequences : BaseRxObs() {
         )
     }
 
+    fun simpleTimerRunForXSeconds() {
+        disposable.add(
+            Observable.interval(1, TimeUnit.SECONDS, Schedulers.newThread())
+                .take(5)
+                .subscribeWith(longDisposableObserver())
+        )
+    }
 }
